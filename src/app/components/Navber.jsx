@@ -1,0 +1,24 @@
+import Link from 'next/link'
+import React from 'react'
+
+export default function Navber() {
+    return (
+        <div>
+            <nav className='max-w-10/12 mx-auto'>
+                <ul className='flex justify-between'>
+                    <Link href='/'>
+                        <li>Home</li>
+                    </Link>
+
+                    <Link href='/components/post'>
+                        <li>posts</li>
+                    </Link>
+
+                    <Link href='/meals'>
+                        <li>Meals</li>
+                    </Link>
+                </ul>
+            </nav>
+        </div>
+    )
+}
