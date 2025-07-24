@@ -20,6 +20,7 @@ export default function SearchInput() {
   return (
     <div>
          <input type="search" 
+                placeholder='search meal'
                 value={search}
                 className='border-2 px-5 py-2 text-black'
                 onChange={(e) => setSearch(e.target.value)}

@@ -38,6 +38,7 @@ export default async function page({ params }) {
             <div
                 className='border-2 rounded-2xl space-y-2.5 p-3'
             >
+                <img src={meal.strMealThumb} alt="" />
                 <h1 className={style.mealheading}>{meal.strMeal}</h1>
                 <p className='text-orange-500'>{meal.strArea}</p>
                 <p className='text-blue-500'>{meal.strInstructions}</p>

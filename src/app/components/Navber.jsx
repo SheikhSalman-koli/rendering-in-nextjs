@@ -14,6 +14,14 @@ export default function Navber() {
                         <li>posts</li>
                     </Link>
 
+                    <Link href='/products'>
+                        <li>products</li>
+                    </Link>
+
+                    <Link href='/products/add'>
+                        <li>add products</li>
+                    </Link>
+
                     <Link href='/meals'>
                         <li>Meals</li>
                     </Link>

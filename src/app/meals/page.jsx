@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import MealSearchInput from '../components/MealSearchInput'
 import style from '../components/mealhead.module.css'
+import Image from 'next/image';
 
 export const metadata = {
     title: "all meals",
@@ -36,9 +37,13 @@ export  default async function page({searchParams}) {
                     className='border-2 rounded-2xl space-y-2.5 p-3'
                     key={meal.idMeal}
                     >
+                        <Image 
+                        width={261}
+                        height={261}
+                        src={meal.strMealThumb} alt="" />
                         <h1 className={style.mealheading}>{meal.strMeal}</h1>
                         <p className='text-orange-500'>{meal.strArea}</p>
-                        <p className='text-blue-500'>{meal.strInstructions.slice('100')}</p>
+                        <p className='text-blue-500'>{meal.strInstructions.split(' ').slice(0,60).join(' ') + '...'}</p>
                         <Link href={`/meals/${meal.idMeal}`}>details</Link>
                     </div>
                 })}
