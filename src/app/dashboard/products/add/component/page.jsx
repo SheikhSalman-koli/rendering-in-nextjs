@@ -1,7 +1,10 @@
 "use client"
+import { postData } from '@/app/actions/products/postSingleProduct'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
 export default function ProductAddForm() {
+    const route = useRouter()
 
     const handleSubmit =async(e)=>{
         e.preventDefault()
@@ -9,18 +12,23 @@ export default function ProductAddForm() {
         const name = form.productName.value
         const payLoad = {name}
 
-        const res = await fetch(`http://localhost:3000/api/items`, {
-            method: 'POST',
-            body: JSON.stringify(payLoad),
-            headers: {
-                "Content-type" : "application/json"
-            }
-        })
+        // const {NEXT_PUBLIC_BASE_URL} = process.env
 
-        const result =await res.json()
+        // const res = await fetch(`${NEXT_PUBLIC_BASE_URL}/api/items`, {
+        //     method: 'POST',
+        //     body: JSON.stringify(payLoad),
+        //     headers: {
+        //         "Content-type" : "application/json"
+        //     }
+        // })
+
+
+        const result =await postData(payLoad)
         form.reset()
-        alert('added successfully!')
         console.log(result);
+        // alert('added successfully!')
+        route.push('/products')
+        // route.refresh()
     }
 
   return (

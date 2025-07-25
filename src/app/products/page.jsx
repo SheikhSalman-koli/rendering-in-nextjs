@@ -1,9 +1,16 @@
+
 import React from 'react'
+import { getProduct } from '../actions/products/getProduct'
+
+export const dynamic = "force-dynamic"
 
 export default async function GetAllProduct() {
 
-    const res =await fetch(`http://localhost:3000/api/items`)
-    const data =await res.json()
+    // const {NEXT_PUBLIC_BASE_URL} = process.env
+    // const res =await fetch(`${NEXT_PUBLIC_BASE_URL}/api/items`)
+    // const data =await res.json()
+
+    const data = await getProduct()
 
   return (
     <div>
