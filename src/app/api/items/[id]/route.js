@@ -3,8 +3,8 @@ import { ObjectId } from "mongodb"
 
 export async function GET(req, { params }) {
 
-    const p = await params.id
-    const filter = { _id: new ObjectId(p) }
+    const id = params.id
+    const filter = { _id: new ObjectId(id) }
     const data = await connectDatabase('products').findOne(filter)
 
     return Response.json(data)
@@ -13,7 +13,7 @@ export async function GET(req, { params }) {
 
 export async function DELETE(req, {params}) {
 
-    const p = await params.id
+    const p = params.id
     const filter = {_id: new ObjectId(p)}
     const deleteData = await connectDatabase('products').deleteOne(filter)
 
@@ -23,7 +23,7 @@ export async function DELETE(req, {params}) {
 
 export async function PATCH(req, { params }) {
 
-    const p = await params.id
+    const p = params.id
     const filter = { _id: new ObjectId(p) }
     const updatedDoc = await req.json()
     const updatedResult = await connectDatabase('products').updateOne(filter, { $set: { ...updatedDoc } })

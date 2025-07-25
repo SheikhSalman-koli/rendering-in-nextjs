@@ -10,8 +10,8 @@ export default function ProductAddForm() {
         e.preventDefault()
         const form = e.target
         const name = form.productName.value
-        const payLoad = {name}
-
+        const payLoad = name
+      
         // const {NEXT_PUBLIC_BASE_URL} = process.env
 
         // const res = await fetch(`${NEXT_PUBLIC_BASE_URL}/api/items`, {
@@ -23,7 +23,7 @@ export default function ProductAddForm() {
         // })
 
 
-        const result =await postData(payLoad)
+        const result =await postData({name: payLoad})
         form.reset()
         console.log(result);
         // alert('added successfully!')
@@ -38,7 +38,7 @@ export default function ProductAddForm() {
             <button
             type='submit'
             className=' px-4 py-2 bg-blue-500'
-            >sbmit</button>
+            >submit</button>
         </form>
     </div>
   )

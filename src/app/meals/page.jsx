@@ -38,8 +38,8 @@ export  default async function page({searchParams}) {
                     key={meal.idMeal}
                     >
                         <Image 
-                        width={261}
-                        height={261}
+                         width={'auto'}
+                         height={'auto'}
                         src={meal.strMealThumb} alt="" />
                         <h1 className={style.mealheading}>{meal.strMeal}</h1>
                         <p className='text-orange-500'>{meal.strArea}</p>

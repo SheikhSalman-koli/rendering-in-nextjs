@@ -10,9 +10,9 @@ export default function Navber() {
                         <li>Home</li>
                     </Link>
 
-                    <Link href='/components/post'>
+                    {/* <Link href='/components/post'>
                         <li>posts</li>
-                    </Link>
+                    </Link> */}
 
                     <Link href='/products'>
                         <li>products</li>
@@ -24,6 +24,10 @@ export default function Navber() {
 
                     <Link href='/meals'>
                         <li>Meals</li>
+                    </Link>
+
+                    <Link href='/api/auth/register'>
+                        <li>Register</li>
                     </Link>
                 </ul>
             </nav>

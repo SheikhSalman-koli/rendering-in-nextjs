@@ -1,12 +1,13 @@
 "use server"
-
 import { connectDatabase } from "@/app/lib/dbConnect"
 
-export const postData = async (postedData) => {
+export const saveUser = async (cratedUser) => {
+
     try {
-        const result = await connectDatabase('products').insertOne(postedData)
+        // check the user is already exist or not
+        const result = await connectDatabase('users').insertOne(cratedUser)
         // return result
-        return {
+         return {
             acknowledged: result.acknowledged,
             insertedId: result.insertedId.toString()
         }
@@ -14,4 +15,5 @@ export const postData = async (postedData) => {
         console.log(error);
         return null
     }
-}
+
+} 
