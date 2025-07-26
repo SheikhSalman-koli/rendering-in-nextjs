@@ -1,5 +1,10 @@
 import { MongoClient, ServerApiVersion } from 'mongodb'
 
+export const collectionsName = {
+    PRODUCTS : "products",
+    USERS : "users"
+}
+
 export const connectDatabase = (collectionName) => {
 
     const uri = `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASS}@cluster0.dclhmji.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;

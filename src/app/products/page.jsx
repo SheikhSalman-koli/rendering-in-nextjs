@@ -13,12 +13,12 @@ export default async function GetAllProduct() {
     const data = await getProduct()
 
   return (
-    <div>
+    <div className='flex justify-center mt-4'>
         <div>
             {
-                data.map(singleData => {
+                data.map((singleData, index) => {
                     return <ul key={singleData._id}>
-                        <li>{singleData.name}</li>
+                        <li>{index+1}. {singleData.name}</li>
                     </ul>
                 })
             }

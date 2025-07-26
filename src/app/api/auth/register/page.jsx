@@ -8,13 +8,15 @@ export default function RegisterPage() {
     const handleSubmit =async(e)=>{
         e.preventDefault()
         const form = e.target
-        const userName = form.userName.value
+        const username = form.userName.value
         const password = form.password.value
-        const data = {userName, password}
+        const data = {username, password}
         const payLoad = {...data, role: "user"}
         console.log("okokokkok", payLoad);
+
         const result = await saveUser(payLoad)
         console.log(result);
+        
         form.reset()
     }
 
@@ -38,6 +40,7 @@ export default function RegisterPage() {
             <button
             type='submit'
             className='px-4 py-1.5 border-1 w-[120px]'
+
             >Submit</button>
         </form>
     </div>

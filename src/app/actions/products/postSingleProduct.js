@@ -1,10 +1,10 @@
 "use server"
 
-import { connectDatabase } from "@/app/lib/dbConnect"
+import { collectionsName, connectDatabase } from "@/app/lib/dbConnect"
 
 export const postData = async (postedData) => {
     try {
-        const result = await connectDatabase('products').insertOne(postedData)
+        const result = await connectDatabase(collectionsName.PRODUCTS).insertOne(postedData)
         // return result
         return {
             acknowledged: result.acknowledged,
