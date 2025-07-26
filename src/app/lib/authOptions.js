@@ -1,6 +1,7 @@
 import { collectionsName, connectDatabase } from "@/app/lib/dbConnect"
 import CredentialsProvider from "next-auth/providers/credentials"
-
+import GoogleProvider from "next-auth/providers/google";
+import GitHubProvider from "next-auth/providers/github";
 
 export const authOptions = {
     providers: [
@@ -34,10 +35,43 @@ export const authOptions = {
                     // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
                 }
             }
+        }),
+        GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET
+        }),
+        GitHubProvider({
+            clientId: process.env.GITHUB_ID,
+            clientSecret: process.env.GITHUB_SECRET
         })
     ],
 
     callbacks: {
+
+        async signIn({ user, account, profile }) {
+            if (account) {
+                try {
+                    const { name, email, image } = user
+                    const { provider, providerAccountId } = account
+                    const payload = { name, email, image, provider, providerAccountId, role: "user" }
+                    // console.log(payload);
+                    const userCollection = connectDatabase(collectionsName.USERS)
+                    const existingUser = await userCollection.findOne({providerAccountId})
+
+                    if(!existingUser){
+                        await userCollection.insertOne(payload)
+                    }
+
+                } catch (error) {
+                    console.log(error);
+                    return false
+                }
+            }
+
+
+            return true
+        },
+
         async session({ session, token, user }) {
             if (token) {
                 session.user.username = token.username
@@ -46,6 +80,7 @@ export const authOptions = {
             }
             return session
         },
+
         async jwt({ token, user, account, profile, isNewUser }) {
             if (user) {
                 token.username = user.username
